@@ -1,6 +1,6 @@
 const table = document.getElementById("game-area")
 drawGameArea();
-const myStage = new StageOne()
+const myStage = new StageTwo()
 let coin1
 let coin2
 let lava1
@@ -18,8 +18,12 @@ startButton.addEventListener("click", (event)=>{
 	myStage.drawStageOne()
 	coin1 = new Coin(11, 20)	
 	coin2 = new Coin(17, 20)
-	lava1 = new Lava(92,7)
+	lava1 = new Lava(93,7)
 	lava1.gravity(myStage.surface)
+	lava2 = new Lava(27, 2)
+	lava2.gravity(myStage.surface)
+	lava3 = new Lava(57, 1, 42)
+	lava3.gravity(myStage.surface)
 	player1 = new Player(108,31)
 	player1.gravity(myStage.surface)
 	pauseText.style.visibility = "hidden"
@@ -43,7 +47,12 @@ resumeButton.addEventListener("click", ()=>{
 	pauseText.style.visibility = "hidden"
 })
 let q = setInterval(() => {
-	if((overlap(player1.surface, lava1.surface))||(overlap(player1.surface, myStage.lava))){
+	if(
+		(overlap(player1.surface, lava1.surface))||
+		(overlap(player1.surface, myStage.lava))||
+		(overlap(player1.surface, lava2.surface))||
+		(overlap(player1.surface), lava3.surface)
+		){
 		console.log("Theyre touching")
 		pauseText.style.visibility = "visible"
 		pauseText.style.color = "red"
@@ -51,6 +60,8 @@ let q = setInterval(() => {
 		player1.blink()
 		clearInterval(player1.gravID)
 		clearInterval(lava1.gravID)
+		clearInterval(lava2.gravID)
+		clearInterval(lava3.gravID)
 		clearInterval(q)
 		removeEventListener("keypress", controller)
 		setTimeout(() => {

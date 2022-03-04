@@ -1,13 +1,14 @@
 class Lava extends Coin{		//Default starting coordinates = (92,7)
-	constructor(x,y){
+	constructor(x,y, distance = 0){
 		super()
 		this.gravID
-		this.defaultX = 92
-		this.defaultY = 7
+		this.defaultX = x
+		this.defaultY = y
 		this.x = x
 		this.y = y
-		this.width = 4
-		this.height = 4
+		this.distance = distance
+		this.width = 2
+		this.height = 2
 		this.color = "red"
 		drawRect(this.x, this.y, this.width, this.height, this.color)
 		let x1 = this.x
@@ -20,6 +21,9 @@ class Lava extends Coin{		//Default starting coordinates = (92,7)
 	}
 	gravity(...surface){					//Takes surfaces.. Returns false when surface is encountered and loop terminates
 		this.gravID = setInterval(() => {
+			if((this.distance!=0)&&(this.x==this.defaultX)&&(this.y==this.defaultY + this.distance)){
+				this.move(this.defaultX, this.defaultY)
+			}
 			let holder = 0
 			for (let i = 0; i < surface[0].length; i++){
 				if(!overlap(surface[0][i], this.checkSurface(this.x, this.y+1))){
@@ -29,9 +33,9 @@ class Lava extends Coin{		//Default starting coordinates = (92,7)
 			if(holder == surface[0].length){
 				this.move(this.x, this.y+1)
 			}
-			else if((lava1.x==92)&&(lava1.y==28)){
-				lava1.move(92,7)
+			else{		//resets when it meets an obstacle
+				this.move(this.defaultX, this.defaultY)
 			}
-		}, 125);
+		}, 80);
 	}
 }

@@ -4,8 +4,8 @@ class Player extends Coin{     //Default starting coordinates (108,31)
 		this.gravID
 		this.x = x
 		this.y = y
-		this.width = 2
-		this.height = 6
+		this.width = 1
+		this.height = 5
 		this.color = "black"
 			drawRect(this.x, this.y, this.width, this.height, this.color)
 			let x1 = this.x
