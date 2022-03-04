@@ -1,13 +1,14 @@
-class Coin{
-	constructor(x, y){
+class Object{
+	constructor(x, y, color = "white"){
 		this.x = x
 		this.y = y
-		this.width = 2
-		this.height = 2
-		this.color = "gold"
+		this.width = 1
+		this.height = 1
+		this.color = color
 		drawRect(this.x, this.y, this.width, this.height, this.color)
 		this.surface = generateSurface(this.x, this.y, this.width, this.height)
 	}
+
 	outOfBounds(x, y){			//Tests if coordinates x and y would put object out of bounds
 		if((x>0)&&(x<=112)&&((x+this.width-1)<=112)&&(y>0)&&(y<=63)&&((y+this.height-1)<=63)){
 			return false
@@ -15,12 +16,15 @@ class Coin{
 			return true
 		}
 	}
+
 	setSurface(x,y){
 		this.surface = generateSurface(x, y, this.width, this.height)
 	}
+
 	checkSurface(x,y){
 		return generateSurface(x, y, this.width, this.height)
 	}
+
 	move(x, y){				
 			clearRect(this.x, this.y, this.width, this.height)
 			this.x = x
@@ -28,6 +32,7 @@ class Coin{
 			drawRect(this.x, this.y, this.width, this.height, this.color)
 			this.setSurface(this.x, this.y)  //x and y are new coordinates
 	}
+  
 	gravity(...surface){					//Takes surfaces.. Returns false when surface is encountered and loop terminates
 		setInterval(() => {
 			let holder = 0

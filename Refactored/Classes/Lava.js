@@ -1,4 +1,4 @@
-class Lava extends Coin{		//Default starting coordinates = (92,7)
+class Lava extends Object{		//Default starting coordinates = (92,7)
 	constructor(x,y, distance = 0){
 		super()
 		this.gravID

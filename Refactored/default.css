@@ -1,0 +1,15 @@
+body{
+	background-color: black;
+}
+#game-area{
+	position: absolute;
+	float: center;
+	top: 20px;
+	width: 720px;
+	height: 405px;
+	background-color:rgb(0,100,180);
+	table-layout: fixed;
+	border-spacing: 0;
+	padding: 0;
+	margin: 0;
+}
